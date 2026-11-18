@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  @apply bg-paper text-ink font-body antialiased;
+}
+
+/* Primary action button — solid ink, Apple-store feel */
+.btn-ink {
+  @apply inline-flex items-center justify-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-semibold text-white transition-all;
+}
+.btn-ink:hover {
+  @apply -translate-y-px bg-black shadow-lift;
+}
+
+/* Secondary button */
+.btn-ghost {
+  @apply inline-flex items-center justify-center gap-2 rounded-full border border-line bg-card px-6 py-3 text-sm font-semibold text-ink transition-all;
+}
+.btn-ghost:hover {
+  @apply -translate-y-px border-ink/20 shadow-card;
+}
+
+.eyebrow {
+  @apply text-xs font-bold uppercase tracking-[0.14em] text-soft;
+}
+
+.hairline {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #e8e8ea 18%, #e8e8ea 82%, transparent);
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+.rise { animation: rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.rise-1 { animation-delay: 0.07s; }
+.rise-2 { animation-delay: 0.14s; }
+.rise-3 { animation-delay: 0.21s; }

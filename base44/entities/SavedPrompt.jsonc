@@ -1,0 +1,16 @@
+{
+  "name": "SavedPrompt",
+  "type": "object",
+  "properties": {
+    "user_id": { "type": "string" },
+    "prompt_id": { "type": "string" },
+    "saved_at": { "type": "string", "format": "date-time" }
+  },
+  "required": ["user_id", "prompt_id"],
+  "rls": {
+    "read": { "created_by": "{{user.email}}" },
+    "create": { "created_by": "{{user.email}}" },
+    "update": { "created_by": "{{user.email}}" },
+    "delete": { "created_by": "{{user.email}}" }
+  }
+}

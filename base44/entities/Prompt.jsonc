@@ -1,0 +1,36 @@
+{
+  "name": "Prompt",
+  "type": "object",
+  "properties": {
+    "category_id": { "type": "string" },
+    "title": { "type": "string" },
+    "description": { "type": "string" },
+    "full_prompt": {
+      "type": "string",
+      "description": "Populated ONLY for free prompts. Premium prompt bodies live in PromptContent, which RLS locks to members."
+    },
+    "aspect_ratio": { "type": "string" },
+    "models": { "type": "array", "items": { "type": "string" } },
+    "premium": { "type": "boolean", "default": true },
+    "featured": { "type": "boolean", "default": false },
+    "popular": { "type": "boolean", "default": false },
+    "preview_image_url": { "type": "string" },
+    "preview": {
+      "type": "object",
+      "description": "Generated gradient preview used until a real image is uploaded.",
+      "properties": {
+        "from": { "type": "string" },
+        "via": { "type": "string" },
+        "to": { "type": "string" },
+        "icon": { "type": "string" }
+      }
+    }
+  },
+  "required": ["category_id", "title"],
+  "rls": {
+    "read": {},
+    "create": { "user_condition": { "role": "admin" } },
+    "update": { "user_condition": { "role": "admin" } },
+    "delete": { "user_condition": { "role": "admin" } }
+  }
+}

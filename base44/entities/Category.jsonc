@@ -1,0 +1,18 @@
+{
+  "name": "Category",
+  "type": "object",
+  "properties": {
+    "number": { "type": "string" },
+    "name": { "type": "string" },
+    "tagline": { "type": "string" },
+    "description": { "type": "string" },
+    "accent": { "type": "string" }
+  },
+  "required": ["name"],
+  "rls": {
+    "read": {},
+    "create": { "user_condition": { "role": "admin" } },
+    "update": { "user_condition": { "role": "admin" } },
+    "delete": { "user_condition": { "role": "admin" } }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "PromptHistory",
+  "type": "object",
+  "properties": {
+    "user_id": { "type": "string" },
+    "prompt_id": { "type": "string" },
+    "viewed_at": { "type": "string", "format": "date-time" }
+  },
+  "required": ["user_id", "prompt_id"],
+  "rls": {
+    "read": { "created_by": "{{user.email}}" },
+    "create": { "created_by": "{{user.email}}" },
+    "update": { "user_condition": { "role": "admin" } },
+    "delete": { "created_by": "{{user.email}}" }
+  }
+}

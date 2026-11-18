@@ -1,0 +1,21 @@
+{
+  "name": "PromptContent",
+  "type": "object",
+  "description": "Premium prompt bodies. THE paywall: RLS only lets premium members and admins read rows, so client-side tampering cannot reveal paid prompt text.",
+  "properties": {
+    "prompt_id": { "type": "string" },
+    "full_prompt": { "type": "string" }
+  },
+  "required": ["prompt_id", "full_prompt"],
+  "rls": {
+    "read": {
+      "$or": [
+        { "user_condition": { "has_premium": true } },
+        { "user_condition": { "role": "admin" } }
+      ]
+    },
+    "create": { "user_condition": { "role": "admin" } },
+    "update": { "user_condition": { "role": "admin" } },
+    "delete": { "user_condition": { "role": "admin" } }
+  }
+}

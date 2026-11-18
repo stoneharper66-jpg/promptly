@@ -1,0 +1,17 @@
+{
+  "name": "User",
+  "type": "object",
+  "description": "Custom fields added to Base44's built-in User. has_premium is the paywall flag the Stripe webhook workflow must keep in sync.",
+  "properties": {
+    "has_premium": { "type": "boolean", "default": false }
+  },
+  "rls": {
+    "read": {
+      "$or": [
+        { "created_by": "{{user.email}}" },
+        { "user_condition": { "role": "admin" } }
+      ]
+    },
+    "update": { "user_condition": { "role": "admin" } }
+  }
+}

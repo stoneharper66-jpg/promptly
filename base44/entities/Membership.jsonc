@@ -1,0 +1,30 @@
+{
+  "name": "Membership",
+  "type": "object",
+  "description": "One row per subscription. Kept in sync by the Base44 Stripe webhook workflow (see README).",
+  "properties": {
+    "user_id": { "type": "string" },
+    "plan_id": { "type": "string" },
+    "status": {
+      "type": "string",
+      "enum": ["active", "past_due", "cancelled"],
+      "default": "active"
+    },
+    "stripe_customer_id": { "type": "string" },
+    "stripe_subscription_id": { "type": "string" },
+    "started_at": { "type": "string", "format": "date-time" },
+    "ended_at": { "type": "string", "format": "date-time" }
+  },
+  "required": ["user_id", "plan_id", "status"],
+  "rls": {
+    "read": {
+      "$or": [
+        { "created_by": "{{user.email}}" },
+        { "user_condition": { "role": "admin" } }
+      ]
+    },
+    "create": { "user_condition": { "role": "admin" } },
+    "update": { "user_condition": { "role": "admin" } },
+    "delete": { "user_condition": { "role": "admin" } }
+  }
+}
